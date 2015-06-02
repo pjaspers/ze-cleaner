@@ -16,8 +16,8 @@ module Cleaner
         current_time = Time.now
 
         midnight = Time.mktime(current_time.year, current_time.month, current_time.day, 23, 59, 59)
-        the_list = ["Piet", "Sophie", "Gregory", "Bram", "Lewis", "Koen", "Maarten", "Tom", "Nathan", "Bob"]
-        the_day_it_all_began = Time.mktime(2014, 11, 17)
+        the_list = ["Nathan", "Toon", "Bob", "Piet", "Sophie", "Gregory", "Bram", "Lewis", "Koen", "Maarten", "Tom"]
+        the_day_it_all_began = Time.mktime(2015, 6, 1)
 
         one_week = 60 * 60 * 24 * 7
         # Number of weeks % number of people = the week we're in.
