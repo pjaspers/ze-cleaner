@@ -23,4 +23,5 @@ app = Rack::Builder.new do
     [200, {'Content-Type' => 'text/html'}, ["<html><body>The cleaner today is: #{cleaner}</body></html>"]]
   }
 end
-Rack::Server.start app: app
+
+run app
