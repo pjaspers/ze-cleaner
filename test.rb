@@ -29,4 +29,9 @@ describe "Cleaning duties" do
       end
     end
   end
+
+  it "responds with json when asked" do
+    get "/", {}, { "CONTENT_TYPE" => "application/json" }
+    JSON.parse(last_response.body)["name"].wont_be_nil
+  end
 end

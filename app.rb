@@ -1,6 +1,7 @@
 require "rack"
 require "rack-cache"
 require "shack"
+require "json"
 
 module Cleaner
   def self.app
@@ -23,7 +24,11 @@ module Cleaner
         # Number of weeks % number of people = the week we're in.
         week_number = (((midnight - the_day_it_all_began) / one_week) % the_list.count).floor
         cleaner = the_list[week_number]
-        [200, {'Content-Type' => 'text/html'}, ["<html><body>The cleaner today is: #{cleaner}</body></html>"]]
+        if env["CONTENT_TYPE"] == "application/json"
+          [200, {'Content-Type' => 'application/json'}, [{name: cleaner}.to_json]]
+        else
+          [200, {'Content-Type' => 'text/html'}, ["<html><body>The cleaner today is: #{cleaner}</body></html>"]]
+        end
       }
     end
   end
