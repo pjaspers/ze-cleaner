@@ -25,7 +25,7 @@ describe "Cleaning duties" do
     people.each.with_index do |p, i|
       Time.stub :now, (Time.mktime(2015, 6, 1) + i*60*60*24*7) do
         get "/"
-        last_response.body.must_include "is: #{p}"
+        last_response.body.must_include "#{p}</h1>"
       end
     end
   end

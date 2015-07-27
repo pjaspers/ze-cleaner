@@ -30,7 +30,18 @@ module Cleaner
                    next: next_up[0..5].map{|d| {name: d}}}.to_json
           [200, {'Content-Type' => 'application/json'}, [json]]
         else
-          [200, {'Content-Type' => 'text/html'}, ["<html><body>The cleaner today is: #{next_up.shift}, next up: #{next_up[0..5]}</body></html>"]]
+          html = <<HTML
+<html>
+<body>
+<div class="cleaner">
+<span class="cleaner__intro">The cleaner today is:</span>
+<h1 class="cleaner__name">%{name}</h1>
+<span class="cleaner__next">Next up: %{next}</span>
+</body>
+</html>
+HTML
+          html = html % {name: next_up.shift, next: next_up[0..5].join(", ")}
+          [200, {'Content-Type' => 'text/html'}, [html]]
         end
       }
     end
