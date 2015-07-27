@@ -24,10 +24,13 @@ module Cleaner
         # Number of weeks % number of people = the week we're in.
         week_number = (((midnight - the_day_it_all_began) / one_week) % the_list.count).floor
         cleaner = the_list[week_number]
+        next_up = the_list[the_list.index(cleaner)..-1] + the_list[0...the_list.index(cleaner)]
         if env["CONTENT_TYPE"] == "application/json"
-          [200, {'Content-Type' => 'application/json'}, [{name: cleaner}.to_json]]
+          json = { current: {name: next_up.shift},
+                   next: next_up[0..5].map{|d| {name: d}}}.to_json
+          [200, {'Content-Type' => 'application/json'}, [json]]
         else
-          [200, {'Content-Type' => 'text/html'}, ["<html><body>The cleaner today is: #{cleaner}</body></html>"]]
+          [200, {'Content-Type' => 'text/html'}, ["<html><body>The cleaner today is: #{next_up.shift}, next up: #{next_up[0..5]}</body></html>"]]
         end
       }
     end
