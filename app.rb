@@ -42,7 +42,6 @@ module Cleaner
     font-variant: small-caps;
     align-items: center;
     justify-content: center;
-    max-width: 50%%;
   }
   .cleaner__name {
     margin: 0px;
@@ -50,9 +49,11 @@ module Cleaner
     color: white;
   }
   .cleaner__intro {
+    align-self: flex-start;
     color: white;
   }
   .cleaner__next {
+    align-self: flex-end;
     color: white;
   }
 </style>
