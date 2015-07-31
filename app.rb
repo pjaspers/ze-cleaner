@@ -32,6 +32,31 @@ module Cleaner
         else
           html = <<HTML
 <html>
+<head>
+<style type="text/css">
+  body {
+    background-color: F557B5;
+  }
+  .cleaner {
+    display: flex;
+    font-variant: small-caps;
+    align-items: center;
+    justify-content: center;
+    max-width: 50%%;
+  }
+  .cleaner__name {
+    margin: 0px;
+    font-size: 30vh;
+    color: white;
+  }
+  .cleaner__intro {
+    color: white;
+  }
+  .cleaner__next {
+    color: white;
+  }
+</style>
+</head>
 <body>
 <div class="cleaner">
 <span class="cleaner__intro">The cleaner today is:</span>
